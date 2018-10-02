@@ -1,6 +1,6 @@
 --- 
 
-- hosts: mate
+- hosts: ipfs
   remote_user: root
   tasks: 
 
