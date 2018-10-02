@@ -1,0 +1,52 @@
+{
+    "name": "${environmentName}",
+    "description": "Subutai IPFS Pin Blueprint",
+    "version": "0.0.2",
+    "author": "https://github.com/lbthomsen",
+    "ssh-key": "lth",
+    "containers": [
+        {
+            "hostname": "ipfs",
+            "template": "debian-stretch",
+            "peer-criteria": "IPFS-GROUP",
+            "size": "${containerSize}"
+        }
+    ],
+    "peer-criteria": [
+        {
+            "name": "IPFS-GROUP"
+        }
+    ],
+    "ansible-configuration": {
+        "source-url": "https://github.com/lbthomsen/subutai-bp-ipfs-pin/archive/master.zip",
+        "ansible-playbook": "site.yml",
+        "groups": [
+            {
+                "name": "ipfs",
+                "hostnames": [
+                    "ipfs"
+                ]
+            }
+        ]
+    },
+    "user-variables": {
+        "environmentName": {
+            "description": "Enter the environment name",
+            "type": "string",
+            "default": "wp",
+            "validation": "[a-zA-Z0-9]+"
+        },
+        "pinObject": {
+            "description": "Enter the pin name",
+            "type": "string",
+            "default": "/ipfs/",
+            "validation": "[a-zA-Z0-9]+"
+        },
+        "containerSize": {
+            "description": "Container Size",
+            "type": "enum",
+            "default": "MEDIUM",
+            "validation": "MEDIUM,LARGE,HUGE"
+        }
+    }
+}

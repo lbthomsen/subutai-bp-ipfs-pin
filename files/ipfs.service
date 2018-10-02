@@ -1,0 +1,15 @@
+[Unit]
+Description=Run ipfs daemon
+
+[Service]
+Type=simple
+EnvironmentFile=-/etc/default/ipfs
+ExecStart=/usr/local/bin/ipfs daemon --migrate --enable-gc --enable-namesys-pubsub
+Restart=on-failure
+User=ipfs
+Group=users
+
+[Install]
+WantedBy=multi-user.target
+Alias=ipfs.service
+
